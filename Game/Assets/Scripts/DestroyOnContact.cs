@@ -7,14 +7,14 @@ public class DestroyOnContact : MonoBehaviour {
     public GameObject playerExplosion;
     public int scoreValue;
     public int health;
-    private GameController gameController;
+    private LevelController gameController;
 
     void Start()
     {
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
-            gameController = gameControllerObject.GetComponent<GameController>();
+            gameController = gameControllerObject.GetComponent<LevelController>();
         }
         if (gameController == null)
         {

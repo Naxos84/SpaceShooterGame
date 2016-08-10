@@ -2,89 +2,49 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class GameController : MonoBehaviour {
-    [Tooltip("An Array of Hazards that can be spawned")]
-    public GameObject[] hazards;
+public class GameController : MonoBehaviour
+{
 
-    public Vector3 spawnValues;
+    public GameController instance;
 
-    public int hazardCount;
-    [Tooltip("Time in Seconds between spawning 2 hazards")]
-    public float spawnRate;
-    [Tooltip("Time before 1st wave starts. And Time between Waves.")]
-    public float startWait;
-
-    private int scorePoints;
-
-    public UnityEngine.UI.Text scoreText;
-
-    public UnityEngine.UI.Text restartText;
-
-    private bool gameOver;
-    private bool restart;
+    public PlayerShip playerShip;
 
 
-	// Use this for initialization
-	void Start () {
-        Init();
-	}
-    void Init()
+    void Awake()
     {
-        scorePoints = 0;
-        gameOver = false;
-        restart = false;
-        restartText.text = "";
-        updateScore();
-        StartCoroutine(spawnWaves());
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if(restart && Input.GetKeyUp(KeyCode.Escape))
+        if (instance == null)
         {
-            SceneManager.LoadScene("Game");
+            DontDestroyOnLoad(gameObject);
+            instance = this;
         }
-    }
-
-    IEnumerator spawnWaves()
-    {
-        yield return new WaitForSeconds(startWait);
-        while (!gameOver) {
-            for (int i = 0; i < hazardCount; i++)
-            {
-                Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(-spawnValues.y, spawnValues.y), spawnValues.z);
-                Quaternion spawnRotation = Quaternion.identity;
-                int random = Random.Range(0, hazards.Length);
-                Instantiate(hazards[random], spawnPosition, spawnRotation);
-                yield return new WaitForSeconds(spawnRate);
-            }
-            yield return new WaitForSeconds(startWait);
-            
-        }
-    }
-
-    void updateScore()
-    {
-        if (scoreText != null)
+        else if (instance != this)
         {
-            scoreText.text = "Score: " + scorePoints;
+            Destroy(gameObject);
         }
-        else
+        if(playerShip == null)
         {
-            Debug.LogError("Cannot find 'GUIText' for updating Scoretext.");
+            playerShip = new PlayerShip();
         }
     }
 
-    public void addToScore(int scoreValue)
+    // Use this for initialization
+    void Start()
     {
-            scorePoints += scoreValue;
-            updateScore();
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
-    public void setGameOver()
+    public void loadScene(string sceneName)
     {
-        gameOver = true;
-        restartText.text = "GAME OVER \n Hit ESC to restart.";
-        restart = true;
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
     }
 }
