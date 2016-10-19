@@ -5,9 +5,11 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
 
-    public GameController instance;
+    public static GameController instance;
 
-    public PlayerShip playerShip;
+    //public PlayerShip playerShip;
+
+    public GameObject playerShip;
 
 
     void Awake()
@@ -21,10 +23,10 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(playerShip == null)
-        {
-            playerShip = new PlayerShip();
-        }
+        //if(playerShip == null)
+        //{
+        //    playerShip = new PlayerShip();
+        //}
     }
 
     // Use this for initialization
@@ -46,5 +48,10 @@ public class GameController : MonoBehaviour
     public void quitGame()
     {
         Application.Quit();
+    }
+
+    public void setPlayerShip(GameObject playerShip)
+    {
+        this.playerShip = playerShip;
     }
 }

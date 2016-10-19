@@ -19,10 +19,10 @@ public class Mover : MonoBehaviour {
             switch (direction)
             {
                 case DIRECTION.LEFT:
-                    rigidBody2D.velocity = transform.right * -speed;
+                    rigidBody2D.velocity = new Vector2(1 * -speed, 0);
                     break;
                 case DIRECTION.RIGHT:
-                    rigidBody2D.velocity = transform.right * speed;
+                    rigidBody2D.velocity = new Vector2(1 * speed, 0);
                     break;
             }
         }
