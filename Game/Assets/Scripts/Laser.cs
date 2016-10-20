@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Laser : MonoBehaviour {
 
-    public float damage;
-    public float speed;
+    public int damage;
+    public int speed;
 
 	// Use this for initialization
 	void Start () {

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class DestroyOnContact : MonoBehaviour {
 
-    public GameObject explosion;
+    public GameObject asteroidExplosion;
+    public GameObject laserExplosion;
     public GameObject playerExplosion;
     public int scoreValue;
     public int health;
@@ -24,20 +25,28 @@ public class DestroyOnContact : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision with " + other.gameObject.name);
         if (other.tag == "Boundary")
         {
             return;
         }
-        Instantiate(explosion, transform.position, transform.rotation);
+        Debug.Log("Collision with " + other.gameObject.name);
+
+        
         if (other.tag == "Player")
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             gameController.setGameOver();
         }
-        health--;
+        if (other.tag == "Shot")
+        {
+            Instantiate(laserExplosion, transform.position, transform.rotation);
+            Laser laser = other.GetComponent<Laser>();
+            health -= laser.damage;
+            Debug.Log("Remaining Health = " + health);
+        }
         if (health <= 0)
         {
+            Instantiate(asteroidExplosion, transform.position, transform.rotation);
             gameController.addToScore(scoreValue);
             Destroy(gameObject);
         }
