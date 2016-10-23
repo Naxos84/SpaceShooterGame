@@ -53,5 +53,11 @@ public class GameController : MonoBehaviour
     public void setPlayerShip(GameObject playerShip)
     {
         this.playerShip = playerShip;
+        Debug.Log("Set Player Ship to " + playerShip.name);
+    }
+
+    public GameObject getPlayerShip()
+    {
+        return this.playerShip;
     }
 }

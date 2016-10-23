@@ -26,6 +26,8 @@ public class LevelController: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameObject playerShip = Instantiate<GameObject>(GameController.instance.getPlayerShip());
+        playerShip.transform.position = new Vector2(Screen.width / 2, Screen.height / 2);
         Init();
 	}
     void Init()
