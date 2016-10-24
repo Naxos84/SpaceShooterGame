@@ -36,7 +36,7 @@ public class ShipSelection : MonoBehaviour {
         }
 
         selectedShip = createNewShip(availableShips[selectionIndex]);
-        GameController.instance.setPlayerShip(selectedShip);
+        GameController.instance.setPlayerShip(availableShips[selectionIndex]);
     }
 
     public void previousShip()
@@ -47,7 +47,7 @@ public class ShipSelection : MonoBehaviour {
             selectionIndex = availableShips.Count - 1;
         }
         selectedShip = createNewShip(availableShips[selectionIndex]);
-        GameController.instance.setPlayerShip(selectedShip);
+        GameController.instance.setPlayerShip(availableShips[selectionIndex]);
     }
 
     private void centerGameObject(GameObject gameObject)

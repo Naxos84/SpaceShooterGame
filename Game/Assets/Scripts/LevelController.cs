@@ -44,7 +44,7 @@ public class LevelController: MonoBehaviour {
 	void Update () {
         if(restart && Input.GetKeyUp(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
@@ -86,7 +86,7 @@ public class LevelController: MonoBehaviour {
     public void setGameOver()
     {
         gameOver = true;
-        restartText.text = "GAME OVER \n Hit ESC to restart.";
+        restartText.text = "GAME OVER \n Hit ESC to get back to the Menu.";
         restart = true;
     }
 }

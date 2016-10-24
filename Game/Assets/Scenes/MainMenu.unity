@@ -1228,7 +1228,7 @@ MonoBehaviour:
   next: {fileID: 2071451935}
   availableShips:
   - {fileID: 1000010193248218, guid: 5012821866d9f8e49a25b98746d51d8c, type: 2}
-  - {fileID: 1000014169191220, guid: bc2ed7b4550a0e940971b11230a0f862, type: 2}
+  - {fileID: 1000013610202116, guid: bc2ed7b4550a0e940971b11230a0f862, type: 2}
   - {fileID: 1000011951322942, guid: 7502f471c8c2af54a8cff0126c85d302, type: 2}
 --- !u!1 &1817286820
 GameObject:

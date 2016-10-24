@@ -7,9 +7,7 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
 
-    //public PlayerShip playerShip;
-
-    public GameObject playerShip;
+    private GameObject playerShip;
 
 
     void Awake()
@@ -23,10 +21,6 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //if(playerShip == null)
-        //{
-        //    playerShip = new PlayerShip();
-        //}
     }
 
     // Use this for initialization
@@ -52,12 +46,13 @@ public class GameController : MonoBehaviour
 
     public void setPlayerShip(GameObject playerShip)
     {
-        this.playerShip = playerShip;
+        this.playerShip = playerShip;// Instantiate<GameObject>(playerShip);
         Debug.Log("Set Player Ship to " + playerShip.name);
     }
 
     public GameObject getPlayerShip()
     {
+        Debug.Log("Returned PlayerShip " + playerShip.name);
         return this.playerShip;
     }
 }
