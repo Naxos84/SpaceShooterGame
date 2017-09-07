@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelController: MonoBehaviour {
     [Tooltip("An Array of Hazards that can be spawned")]
@@ -19,13 +20,34 @@ public class LevelController: MonoBehaviour {
     private bool gameOver;
     private bool restart;
 
+    public List<GameObject> availableShips;
 
-	// Use this for initialization
-	void Start () {
-        GameObject playerShip = GameControl.instance.playerShip;
-        playerShip.SetActive(true);
-        playerShip.transform.position = new Vector2(Screen.width / 2, Screen.height / 2);
-        Init();
+
+    // Use this for initialization
+    void Start () {
+        foreach(GameObject gameObject in availableShips)
+        {
+            gameObject.SetActive(false);
+        }
+        GameObject playerShip;
+        switch (GameControl.instance.selectedShipIndex)
+        {
+            case 0:
+                playerShip = availableShips[0];
+                break;
+            case 1:
+                playerShip = availableShips[1];
+                break;
+            case 2:
+                playerShip = availableShips[2];
+                break;
+            default:
+                playerShip = availableShips[0];
+                break;
+        }
+                playerShip.SetActive(true);
+                playerShip.transform.position = new Vector2(Screen.width / 2, Screen.height / 2);
+                Init();
 	}
     void Init()
     {

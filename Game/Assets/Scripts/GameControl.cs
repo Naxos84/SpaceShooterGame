@@ -14,6 +14,8 @@ public class GameControl : MonoBehaviour
 
     public GameObject playerShip;
 
+    public int selectedShipIndex = 0;
+
     public float health;
     public float experience;
     public float score;
@@ -66,6 +68,11 @@ public class GameControl : MonoBehaviour
         Destroy(playerShip);
         playerShip = Instantiate<GameObject>(ship);
         playerShip.SetActive(false);
+    }
+
+    public void setShipIndex(int selectedShipIndex)
+    {
+        this.selectedShipIndex = selectedShipIndex;
     }
 }
 

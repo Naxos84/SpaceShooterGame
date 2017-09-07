@@ -47,7 +47,7 @@ public class ShipSelection : MonoBehaviour {
         }
         availableShips[selectionIndex].SetActive(true);
 
-        GameControl.instance.setShip(availableShips[selectionIndex]);
+        GameControl.instance.setShipIndex(selectionIndex);
     }
 
     public void previousShip()
@@ -61,6 +61,6 @@ public class ShipSelection : MonoBehaviour {
 
         availableShips[selectionIndex].SetActive(true);
 
-        GameControl.instance.setShip(availableShips[selectionIndex]);
+        GameControl.instance.setShipIndex(selectionIndex);
     }
 }
