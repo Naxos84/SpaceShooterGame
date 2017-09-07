@@ -8,16 +8,16 @@ public class DestroyOnContact : MonoBehaviour {
     public GameObject playerExplosion;
     public int scoreValue;
     public int health;
-    private LevelController gameController;
+    private LevelController levelController;
 
     void Start()
     {
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
         {
-            gameController = gameControllerObject.GetComponent<LevelController>();
+            levelController = gameControllerObject.GetComponent<LevelController>();
         }
-        if (gameController == null)
+        if (levelController == null)
         {
             Debug.Log("Cannot find 'GameController' script");
         }
@@ -35,7 +35,7 @@ public class DestroyOnContact : MonoBehaviour {
         if (other.tag == "Player")
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-            gameController.setGameOver();
+            levelController.setGameOver();
         }
         if (other.tag == "Shot")
         {
@@ -47,7 +47,7 @@ public class DestroyOnContact : MonoBehaviour {
         if (health <= 0)
         {
             Instantiate(asteroidExplosion, transform.position, transform.rotation);
-            gameController.addToScore(scoreValue);
+            levelController.addToScore(scoreValue);
             Destroy(gameObject);
         }
         Destroy(other.gameObject);

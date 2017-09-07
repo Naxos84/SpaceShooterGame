@@ -14,10 +14,6 @@ public class LevelController: MonoBehaviour {
     [Tooltip("Time before 1st wave starts. And Time between Waves.")]
     public float startWait;
 
-    private int scorePoints;
-
-    public UnityEngine.UI.Text scoreText;
-
     public UnityEngine.UI.Text restartText;
 
     private bool gameOver;
@@ -26,17 +22,16 @@ public class LevelController: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject playerShip = Instantiate<GameObject>(GameController.instance.getPlayerShip());
+        GameObject playerShip = GameControl.instance.playerShip;
+        playerShip.SetActive(true);
         playerShip.transform.position = new Vector2(Screen.width / 2, Screen.height / 2);
         Init();
 	}
     void Init()
     {
-        scorePoints = 0;
         gameOver = false;
         restart = false;
         restartText.text = "";
-        updateScore();
         StartCoroutine(spawnWaves());
     }
 	
@@ -65,22 +60,9 @@ public class LevelController: MonoBehaviour {
         }
     }
 
-    void updateScore()
-    {
-        if (scoreText != null)
-        {
-            scoreText.text = "Score: " + scorePoints;
-        }
-        else
-        {
-            Debug.LogError("Cannot find 'GUIText' for updating Scoretext.");
-        }
-    }
-
     public void addToScore(int scoreValue)
     {
-            scorePoints += scoreValue;
-            updateScore();
+            GameControl.instance.score += scoreValue;
     }
 
     public void setGameOver()

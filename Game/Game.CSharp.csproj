@@ -63,10 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AdjustScript.cs" />
     <Compile Include="Assets\Scripts\DestroyAfterStopped.cs" />
     <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\DestroyOnContact.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameControl.cs" />
     <Compile Include="Assets\Scripts\GameVariables.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\ScrollableBackground.cs" />
     <Compile Include="Assets\Scripts\ShipPartPanel.cs" />
     <Compile Include="Assets\Scripts\ShipSelection.cs" />
+    <Compile Include="Assets\Scripts\TraverseScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

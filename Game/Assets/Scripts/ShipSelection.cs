@@ -5,17 +5,23 @@ using System.Collections.Generic;
 
 public class ShipSelection : MonoBehaviour {
 
-    public Button previous;
-    public Button next;
-    private int selectionIndex;
+    private int selectionIndex = 0;
 
     public List<GameObject> availableShips;
-
-    private GameObject selectedShip;
+    
 
 	// Use this for initialization
 	void Start () {
-        selectionIndex = -1;
+        availableShips = new List<GameObject>();
+        foreach(Transform t in transform)
+        {
+            availableShips.Add(t.gameObject);
+        }
+
+        foreach(GameObject ship in availableShips)
+        {
+            ship.SetActive(false);
+        }
         nextShip();
 	}
 	
@@ -24,44 +30,37 @@ public class ShipSelection : MonoBehaviour {
 	
 	}
 
+    void OnGUI()
+    {
+    }
+
     
 
     public void nextShip()
     {
+        availableShips[selectionIndex].SetActive(false);
         selectionIndex++;
 
         if(selectionIndex >= availableShips.Count)
         {
             selectionIndex = 0;
         }
+        availableShips[selectionIndex].SetActive(true);
 
-        selectedShip = createNewShip(availableShips[selectionIndex]);
-        GameController.instance.setPlayerShip(availableShips[selectionIndex]);
+        GameControl.instance.setShip(availableShips[selectionIndex]);
     }
 
     public void previousShip()
     {
+        availableShips[selectionIndex].SetActive(false);
         selectionIndex--;
         if(selectionIndex < 0)
         {
             selectionIndex = availableShips.Count - 1;
         }
-        selectedShip = createNewShip(availableShips[selectionIndex]);
-        GameController.instance.setPlayerShip(availableShips[selectionIndex]);
-    }
 
-    private void centerGameObject(GameObject gameObject)
-    {
-        Vector3 p = transform.position;
-        Debug.Log("ShipSelection Position: X|Y --> " + p.x + "|" + p.y);
-        gameObject.transform.position = new Vector2(p.x, p.y);
-    }
+        availableShips[selectionIndex].SetActive(true);
 
-    private GameObject createNewShip(GameObject newShip)
-    {
-        Destroy(selectedShip);
-        GameObject ship = Instantiate<GameObject>(newShip);
-        centerGameObject(ship);
-        return ship;
+        GameControl.instance.setShip(availableShips[selectionIndex]);
     }
 }
